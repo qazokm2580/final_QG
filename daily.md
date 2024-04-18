@@ -6,3 +6,8 @@
 
 ## 4.13
 
+
+
+## 4.17
+
+$env:NODE_OPTIONS="--openssl-legacy-provider"
