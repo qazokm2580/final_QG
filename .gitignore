@@ -150,4 +150,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-login_register/*
+src/main/resources/*
+
+target/
+node_modules/
