@@ -28,4 +28,5 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 
 ## 4.23
 
-账号密码的加盐好像为时尚早，最近的一步应该是写一个简单的主界面，使用element框架
+重新导入了connector的库，原因是maven上的版本idea里经常爆CVE-2023-(忘了多少)索性官网下了个8.3解决
+账号密码的加盐、加session认证好像为时尚早，最近的一步应该是写一个简单的主界面，使用element框架实现最基础的功能（确信

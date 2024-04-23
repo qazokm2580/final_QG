@@ -22,11 +22,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
             <version>2.0.21.graal</version>
@@ -43,8 +38,6 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.13</version>
         </dependency>
-
-        <!--      jwt-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -58,6 +51,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>${project.build.finalName}</finalName>
+        <finalName>${name}</finalName>
     </build>
 </project>
