@@ -28,14 +28,24 @@ function loadXMLDoc()
 			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
 		}
 	}
-	xmlhttp.open("GET","./auth-sign-up.html",true);
+	xmlhttp.open("GET","./auth-sign-in.html",true);
 	xmlhttp.send();
 }
+</script>
+<script>
+    window.onload = function() {
+        var loadTime = Date.now();
+        var startTime = performance.timing.navigationStart;
+        var duration = loadTime - startTime;
+
+        document.getElementById('loading-time').textContent = '页面加载时间：' + duration + '毫秒';
+    };
 </script>
 <body>
 
 <div id="myDiv"><h2>网上学习系统</h2></div>
 <button type="button" onclick="loadXMLDoc()">点击登录</button>
+<div id="loading-time">页面加载中...</div>
 
 </body>
 </html>

@@ -25,3 +25,7 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 有了明确的方向标后进度突飞猛进，至少完成了登录页的搭建。。。
 并且把JavaX的servlet换成Jakarta的servlet，效果不可谓不明显，最直接的体现就是变api从不可用至可用状态
 得益于高人指点，让我从servlet的配置中解放出来了，直接在类上添加@WebServlet注解即可。直接省去写着写着就切文件的繁琐步骤
+
+## 4.23
+
+账号密码的加盐好像为时尚早，最近的一步应该是写一个简单的主界面，使用element框架

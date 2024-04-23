@@ -150,7 +150,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-src/main/resources/*
-
 target/
 node_modules/
+src/main/resources/jdbc.properties
+note.xml
