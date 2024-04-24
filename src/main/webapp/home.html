@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>Element Plus demo</title>
+</head>
+<body>
+<div >
+
+</div>
+<div id="app" class="flex justify-space-between mb-4 flex-wrap gap-4">
+    <el-button>{{ message }}</el-button>
+    <el-form-item>
+        <el-button type="primary" @click="submitForm('form')">登录</el-button>
+        <el-button type="info" @click="submitForm('form')" disabled>登录</el-button>
+    </el-form-item>
+    <el-form-item>
+        <el-button type="info" @click="submitForm('form')">登录</el-button>
+    </el-form-item>
+    <el-form-item>
+        <el-button type="success" @click="submitForm('form')">{{ textx }}</el-button>
+    </el-form-item>
+    <el-form-item>
+        <el-button type="warning" @click="submitForm('form')">登录</el-button>
+    </el-form-item>
+    <el-form-item>
+        <el-button type="danger" @click=LoginServlet>登录</el-button>
+    </el-form-item>
+</div>
+<script>
+    const App = {
+        data() {
+            return {
+                message: "Hello Element Plus1145141919810",
+                textx: "Hello Element 111",
+            };
+        },
+    };
+
+
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+    app.mount("#app");
+</script>
+    <h3>“基本链接”按钮</h3>
+
+    <br />
+
+    <h3>“已禁用的链接”按钮</h3>
+<div class="flex justify-space-between flex-wrap gap-4">
+    <el-button v-for="button in buttons"
+               :key="button.text"
+               :type="button.type"
+               link
+               disabled>{{ textx }}</el-button>
+</div>
+
+<script setup lang="ts">
+    const buttons = [
+        { type: '', text: 'plain普通' },
+        { type: 'primary', text: 'primary主要' },
+        { type: 'success', text: 'success成功' },
+        { type: 'info', text: 'info信息' },
+        { type: 'warning', text: 'warning警告' },
+        { type: 'danger', text: 'danger危险' },
+    ]as const
+
+</script>
+</body>
+</html>

@@ -22,7 +22,7 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 
 ## 4.22
 
-有了明确的方向标后进度突飞猛进，至少完成了登录页的搭建。。。
+有了明确的方向标后进度突飞猛进，至少完成了登录注册的servlet以及页面的搭建。。。
 并且把JavaX的servlet换成Jakarta的servlet，效果不可谓不明显，最直接的体现就是变api从不可用至可用状态
 得益于高人指点，让我从servlet的配置中解放出来了，直接在类上添加@WebServlet注解即可。直接省去写着写着就切文件的繁琐步骤
 
@@ -30,3 +30,13 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 
 重新导入了connector的库，原因是maven上的版本idea里经常爆CVE-2023-(忘了多少)索性官网下了个8.3解决
 账号密码的加盐、加session认证好像为时尚早，最近的一步应该是写一个简单的主界面，使用element框架实现最基础的功能（确信
+
+## 4.24
+
+重写了login的API，把注册和登录写进一个DAO类里再由不同的类(使用ajax)分别调用，似乎还能实现加分项中的脱敏传输(?)
+
+把敏感信息放在专门的一个config中方便直接调用。
+
+引入element-plus成功入门失败
+
+我天我今天才知道MVC是前后端分离的一个实现，我现在用的servlet又是其中重要一环，属于是吃了没文化的亏

@@ -3,6 +3,8 @@
 <meta charset="utf-8">
 <head>
     <title>welcome!!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 </head>
 <body>
 <h2>Login</h2>
@@ -12,15 +14,10 @@
     <input type="submit" value="登陆">
     <input type="reset" value="重置">
 </form>
-<script>
-    import { ElButton } from 'element-plus'
-    export default {
-        components: { ElButton },
-    }
-</script>
+
 <h2>Register</h2>
 <form action="RegisterServlet" method="post">
-    Username: <input type="text" name="email" /><br/>
+    Username: <input type="text" name="username" /><br/>
     Password: <input type="password" name="password" /><br/>
     <input type="submit" value="注册">
     <input type="reset" value="重置">

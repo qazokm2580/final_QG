@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
     <title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        main
     </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
 </head>
 
 <script>
@@ -37,15 +44,36 @@ function loadXMLDoc()
         var loadTime = Date.now();
         var startTime = performance.timing.navigationStart;
         var duration = loadTime - startTime;
-
         document.getElementById('loading-time').textContent = '页面加载时间：' + duration + '毫秒';
     };
 </script>
+<script>
+    const App = {
+        data() {
+            return {
+                message: "Hello Element Plus1145141919810",
+                textx: "Hello Element 111",
+            };
+        },
+    };
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+    app.mount("#app");
+</script>
 <body>
-
 <div id="myDiv"><h2>网上学习系统</h2></div>
 <button type="button" onclick="loadXMLDoc()">点击登录</button>
 <div id="loading-time">页面加载中...</div>
+<div id="app" class="flex justify-space-between mb-4 flex-wrap gap-4">
+    <el-button>111</el-button>
+    <el-form-item>
+        <el-button type="primary" @click="submitForm('form')">登录</el-button>
+        <el-button type="info" @click="submitForm('form')" disabled>登录</el-button>
+    </el-form-item>
+    <el-form-item>
+        <el-button type="info" @click="submitForm('form')">登录</el-button>
+    </el-form-item>
 
+</div>
 </body>
 </html>

@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import secu.DatabaseConfig;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -19,16 +20,21 @@ public class RegisterServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String confirmpassword = request.getParameter("confirmpassword");
+
         String email = request.getParameter("email");
         PrintWriter out = response.getWriter();
         out.println(username+":"+password+email);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wk_sql", "root", "575360632b");
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (email, password) VALUES (?, ?)");
+            Class.forName(DatabaseConfig.getProperty("jdbc.driver"));
+            Connection conn = DriverManager.getConnection(DatabaseConfig.getProperty("jdbc.url"),
+                    DatabaseConfig.getProperty("jdbc.username"),
+                    DatabaseConfig.getProperty("jdbc.password"));
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (username, password) VALUES (?, ?)");
             encode(password);
-            String passwordHash = "";
-            int i = stmt.executeUpdate("INSERT INTO user(email, password) VALUES ('" + username + "', '" + password + "')");
+            confirmpassword=password;
+            int i = stmt.executeUpdate("INSERT INTO user(username, password) VALUES ('" + username + "', '" + password + "')");
 
             if (i > 0) {
                 response.sendRedirect("success.jsp");
