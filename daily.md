@@ -40,3 +40,7 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 引入element-plus成功入门失败
 
 我天我今天才知道MVC是前后端分离的一个实现，我现在用的servlet又是其中重要一环，属于是吃了没文化的亏
+
+## 4.25(绝赞备考中……)
+
+明天复变函数期末考
