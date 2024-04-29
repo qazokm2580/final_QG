@@ -1,20 +1,21 @@
-package login;
+package com.hzyj233.Servlet;
 
 import java.io.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import secu.DatabaseConfig;
-
+import jakarta.servlet.http.*;
+import com.hzyj233.pojo.DatabaseConfig;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.security.MessageDigest;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
+        private static final String INSERT_USERS_SQL = "INSERT INTO users" +
+                "  (username, nickname, password_salt, password_hash) VALUES " +
+                " (?, ?, ?, ?);";
     @Override
+
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -31,10 +32,10 @@ public class RegisterServlet extends HttpServlet {
             Connection conn = DriverManager.getConnection(DatabaseConfig.getProperty("jdbc.url"),
                     DatabaseConfig.getProperty("jdbc.username"),
                     DatabaseConfig.getProperty("jdbc.password"));
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (username, password) VALUES (?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (username, pass_sha2) VALUES (?, ?)");
             encode(password);
             confirmpassword=password;
-            int i = stmt.executeUpdate("INSERT INTO user(username, password) VALUES ('" + username + "', '" + password + "')");
+            int i = stmt.executeUpdate("INSERT INTO user(username, pass_sha2) VALUES ('" + username + "', '" + password + "')");
 
             if (i > 0) {
                 response.sendRedirect("success.jsp");
@@ -53,8 +54,8 @@ public class RegisterServlet extends HttpServlet {
         md.update(password.getBytes());
         byte byteData[] = md.digest();
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        for (byte byteDatum : byteData) {
+            sb.append(Integer.toString((byteDatum & 0xff) + 0x100, 16).substring(1));
         }
         String passwordHash = sb.toString();
     }

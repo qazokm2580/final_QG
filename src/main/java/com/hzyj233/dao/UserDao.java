@@ -1,12 +1,16 @@
-package login;
+package com.hzyj233.dao;
 
-import secu.DatabaseConfig;
+import com.hzyj233.pojo.DatabaseConfig;
 
 import java.sql.*;
 
 public class UserDao {
     // 注册用户
     public boolean registerUser(String username, String password) {
+        byte[] pass_sha2 = new byte[16];
+        byte[] confirmPassword = new byte[16];
+
+
         try {
             Class.forName(DatabaseConfig.getProperty("jdbc.driver"));
             Connection conn = DriverManager.getConnection(
@@ -14,9 +18,15 @@ public class UserDao {
                     DatabaseConfig.getProperty("jdbc.username"),
                     DatabaseConfig.getProperty("jdbc.password")
             );
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Users (username, password) VALUES (?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO user (nickname, pass_sha2) VALUES (?, ?)");
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            pstmt.setBytes(2, pass_sha2);
+            pstmt.setBytes(2, confirmPassword);
+
+            if (!password.equals(confirmPassword)) {
+                // Handle error: the two passwords do not match
+                return false;
+            }
             int rows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -36,7 +46,7 @@ public class UserDao {
                     DatabaseConfig.getProperty("jdbc.username"),
                     DatabaseConfig.getProperty("jdbc.password")
             );
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM user WHERE id = ? AND password = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM user WHERE id = ? AND pass_sha2 = ?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
@@ -60,7 +70,7 @@ public class UserDao {
                     DatabaseConfig.getProperty("jdbc.username"),
                     DatabaseConfig.getProperty("jdbc.password")
             );
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Users SET password = ? WHERE username = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE user SET pass_sha2 = ? WHERE username = ?");
             pstmt.setString(1, password);
             pstmt.setString(2, username);
             int rows = pstmt.executeUpdate();

@@ -1,10 +1,9 @@
-package secu;
-
-import jakarta.servlet.annotation.WebServlet;
+package com.hzyj233.utils;
 
 import java.util.Base64;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
 
 public class PasswordStorage {
     public static String hashPassword(String password, String salt) {
@@ -18,3 +17,7 @@ public class PasswordStorage {
         }
     }
 }
+
+
+
+

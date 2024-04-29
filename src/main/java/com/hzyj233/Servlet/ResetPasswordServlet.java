@@ -1,4 +1,4 @@
-package login;
+package com.hzyj233.Servlet;
 
 import java.io.*;
 import jakarta.servlet.*;
@@ -17,7 +17,7 @@ public class ResetPasswordServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wk_sql", "root", "575360632b");
-            String sql = "UPDATE user SET password = ? WHERE email = ?";
+            String sql = "UPDATE user SET pass_sha2 = ? WHERE email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newpassword);
             pstmt.setString(2, username);

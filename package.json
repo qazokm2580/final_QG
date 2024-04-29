@@ -1,12 +1,25 @@
 {
   "dependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-service": "^5.0.8",
     "axios": "^1.6.8",
-    "element-plus": "^2.7.1"
+    "element-plus": "^2.7.2"
   },
   "devDependencies": {
     "unplugin-auto-import": "^0.17.5",
     "unplugin-element-plus": "^0.8.0",
     "unplugin-vue-components": "^0.26.0"
-  }
+  },
+  "name": "wk_web",
+  "version": "1.0.0",
+  "description": "锟斤拷",
+  "main": "park.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
